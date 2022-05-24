@@ -22,7 +22,7 @@ stages:          # List of stages for jobs, and their order of execution
 install:
   stage: install-requirements
   script:
-  - apt install -y cmake build-essential
+  - apt install -y cmake
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
