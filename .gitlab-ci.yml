@@ -15,18 +15,11 @@
 
 image: gcc
 
-stages:          # List of stages for jobs, and their order of execution
-  - install-requirements
-  - build
-
-install:
-  stage: install-requirements
-  script:
-    - apt update -y
-    - apt install -y cmake
+before_script:
+ - apt-get update --yes
+ - apt-get install --yes cmake
 
 build-job:       # This job runs in the build stage, which runs first.
-  stage: build
   script:
     - cmake -B build -S .
     - cmake --build build --target GL3H
