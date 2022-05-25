@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +23,23 @@ jobs:
         with:
           name: Dynamic library
           path: build/libGL3H.so
+
+  build-windows:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run cmake configure
+        run: cmake -B build -S .
+      - name: Build release version
+        run: cmake --build build --config Release
+      - name: Archive import library
+        uses: actions/upload-artifact@v3
+        with:
+          name: Import library
+          path: build/Release/GL3H.lib
+      - name: Archive dynamic library
+        uses: actions/upload-artifact@v3
+        with:
+          name: Dynamic library
+          path: build/Release/GL3H.dll
