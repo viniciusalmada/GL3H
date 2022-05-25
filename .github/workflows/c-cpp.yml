@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: sudo apt install -y libglew-dev cmake
       - name: Run cmake configure
-        run: cmake -B build -S .
+        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
       - name: Build
         run: cmake --build build
       - name: Archive shared object
